@@ -22,31 +22,36 @@
         <div class="content">
 			<div class="row uppermenu">
 				<div class="inner">
-					uppermenu
+					<button>Map</button>
+					<button>Elevation chart</button>
+					<button>Info</button>
 				</div>
 			</div>
 			
-			<div class="row texfield">
-				<div class="inner">
-					textfield
+			<div class="row pagecontent">
+				<div class="row texfield">
+					<div class="inner">
+						<input type="text">
+					</div>
 				</div>
-			</div>
 
-			<div class="row gmapcontainer">
-				gmapcontainer
-			</div>
-
-			<div class="row options">
-				<div class="inner">
-					options
+				<div class="row gmapcontainer">
+					gmapcontainer
 				</div>
-			</div>
 
-			<div class="row footer">
-				<div class="inner">
-					footer
+				<div class="row options">
+					<div class="inner">
+						<label><input type="checkbox"> walking?</label>
+						<button>Calculate</button>
+					</div>
 				</div>
-			</div>			
+
+				<div class="row footer">
+					<div class="inner">
+						
+					</div>
+				</div>	
+			</div>
 		</div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
