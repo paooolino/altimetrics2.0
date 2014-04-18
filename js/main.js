@@ -5,6 +5,7 @@ $(document).ready(function(){
 	
 	var map;
 	var geocoder = new google.maps.Geocoder();
+	var markers = [];
 	
 	
 	
@@ -13,16 +14,20 @@ $(document).ready(function(){
 		gMap functions
 	*/
 	
-	function showMap() {
+	function initMap() {
 		// showing google map.
 		map = new google.maps.Map( $('#map_canvas')[0], {mapTypeId: google.maps.MapTypeId.ROADMAP} );
+		
+		// centering the map.
 		centerMap('Italia', 5);		
+		
+		// setup click handler.
+		google.maps.event.addListener(map, 'click', clickHandler);
 	}
 	
 	function centerMap(localita, zoom){
 		if(geocoder){
 			geocoder.geocode({'address': localita}, function(results, status){
-				console.log(status);
 				if (status == google.maps.GeocoderStatus.OK) {
 				  map.setCenter(results[0].geometry.location);
 				  map.setZoom(zoom);
@@ -33,6 +38,19 @@ $(document).ready(function(){
 		}
 	}	
 
+	function clickHandler(ev){
+		addMarker(ev.latLng);
+	}
+
+	function addMarker(point){
+		var marker = new google.maps.Marker({
+			position: point, 
+			map: map,
+			draggable: true
+		});   
+		markers.push(marker);
+	}	
+	
 	
 	
 	
@@ -50,5 +68,5 @@ $(document).ready(function(){
 	
 	
 	render();
-	showMap();
+	initMap();
 });
