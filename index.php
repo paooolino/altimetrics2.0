@@ -19,7 +19,35 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <div class="content">
+			<div class="row uppermenu">
+				<div class="inner">
+					uppermenu
+				</div>
+			</div>
+			
+			<div class="row texfield">
+				<div class="inner">
+					textfield
+				</div>
+			</div>
+
+			<div class="row gmapcontainer">
+				gmapcontainer
+			</div>
+
+			<div class="row options">
+				<div class="inner">
+					options
+				</div>
+			</div>
+
+			<div class="row footer">
+				<div class="inner">
+					footer
+				</div>
+			</div>			
+		</div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
