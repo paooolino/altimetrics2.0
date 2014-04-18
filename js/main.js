@@ -1,22 +1,22 @@
 $(document).ready(function(){
+	/** 
+		gMap variables
+	*/
+	
 	var map;
 	var geocoder = new google.maps.Geocoder();
 	
 	
-
-	function init() {
-		render();
-		
+	
+	
+	/** 
+		gMap functions
+	*/
+	
+	function showMap() {
 		// showing google map.
 		map = new google.maps.Map( $('#map_canvas')[0], {mapTypeId: google.maps.MapTypeId.ROADMAP} );
 		centerMap('Italia', 5);		
-	}
-	
-	function render() {
-		$('#map_canvas').css({
-			width : '100%',
-			height : 400
-		});
 	}
 	
 	function centerMap(localita, zoom){
@@ -35,5 +35,20 @@ $(document).ready(function(){
 
 	
 	
-	init();
+	
+	/**
+		page function
+	*/
+	
+	function render() {
+		$('#map_canvas').css({
+			width : '100%',
+			height : 400
+		});
+	}	
+	
+	
+	
+	render();
+	showMap();
 });
