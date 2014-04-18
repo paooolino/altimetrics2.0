@@ -35,7 +35,7 @@
 					</div>
 				</div>
 
-				<div class="row gmapcontainer">
+				<div id="map_canvas" class="row gmapcontainer">
 					gmapcontainer
 				</div>
 
@@ -56,7 +56,8 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
