@@ -7,7 +7,8 @@ $(document).ready(function(){
 	var geocoder = new google.maps.Geocoder();
 	var markers = [];
 	
-	
+	var directions = new google.maps.DirectionsService();
+	var directionsDisplay = new google.maps.DirectionsRenderer();
 	
 	
 	/** 
@@ -17,6 +18,9 @@ $(document).ready(function(){
 	function initMap() {
 		// showing google map.
 		map = new google.maps.Map( $('#map_canvas')[0], {mapTypeId: google.maps.MapTypeId.ROADMAP} );
+		
+		// setup directionsDisplay map renderer
+		directionsDisplay.setMap(map);
 		
 		// centering the map.
 		centerMap('Italia', 5);		
@@ -49,13 +53,63 @@ $(document).ready(function(){
 			draggable: true
 		});   
 		markers.push(marker);
+		
+		if( markers.length > 1 ) {
+			renderPath();
+		}
 	}	
+	
+	function renderPath() {
+		// every path supports up to 10 points
+
+		var mode = google.maps.DirectionsTravelMode.DRIVING;
+		//if(document.getElementById("apiedi").checked){
+		//	mode = google.maps.DirectionsTravelMode.WALKING;
+		//}
+		
+		for( var m = 0; m < markers.length; m++ ) {
+			if( m % 10 == 0 ) {
+				
+				// build the request
+				var start = m;
+				var end = markers[m + 9] ? m + 9 : markers.length - 1;
+				var request = {
+					origin: markers[start].getPosition(),
+					destination: markers[end].getPosition(),
+					travelMode: mode,
+					waypoints: getWaypointsFromMarkers( markers.slice(start+1, end) ),
+					avoidHighways: true
+				}
+				
+				// show route
+				directions.route(request, function(result, status) {
+					if (status == google.maps.DirectionsStatus.OK) {
+						directionsDisplay.setDirections(result);
+					} else {
+						alert("ERROR: "+status);				
+					}
+				});		
+						
+			}
+		}
+	}
+	
+	function getWaypointsFromMarkers( _markers ) {
+		var waypts = [];
+		for( var m = 0; m < _markers.length; m++ ) {
+			waypts.push({
+				location: _markers[m].getPosition(),
+				stopover:true
+			});					
+		}
+		return waypts;
+	}
 	
 	
 	
 	
 	/**
-		page function
+		page rendering
 	*/
 	
 	function render() {
@@ -64,6 +118,11 @@ $(document).ready(function(){
 			height : 400
 		});
 	}	
+	
+	$(window).resize(function(){
+		render();	
+	});
+	
 	
 	
 	
